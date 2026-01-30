@@ -78,6 +78,11 @@ export default function DashboardPage() {
     const { profile, tasks, shortlisted, locked } = data || {};
     const currentStageIndex = stages.findIndex(s => s.id === (profile?.currentStage || "building_profile"));
 
+    // Calculate dynamic Match Index
+    const averageMatchScore = shortlisted?.length > 0
+        ? Math.round(shortlisted.reduce((acc: number, item: any) => acc + calculateMatchScore(profile, item.university), 0) / shortlisted.length)
+        : 85;
+
     return (
         <div className="min-h-screen bg-[#f8fafc] flex overflow-hidden">
             {/* Sidebar / Nav */}
@@ -140,12 +145,24 @@ export default function DashboardPage() {
 
                     <div className="flex items-center gap-3 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm">
                         <div className="flex -space-x-2 mr-2">
-                            {[1, 2, 3].map(i => (
-                                <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-black text-slate-400 uppercase">A{i}</div>
-                            ))}
+                            {shortlisted?.slice(0, 3).map((item: any) => {
+                                const initials = item.university.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase();
+                                return (
+                                    <div
+                                        key={item.id}
+                                        onClick={() => setSelectedUni(item.university)}
+                                        className="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-black text-slate-400 uppercase cursor-pointer hover:z-20 hover:scale-110 transition-all group"
+                                    >
+                                        <span className="group-hover:text-indigo-600">{initials}</span>
+                                    </div>
+                                );
+                            })}
                         </div>
                         <div className="h-8 w-[1px] bg-slate-100 mx-1" />
-                        <button className="p-2.5 bg-slate-900 text-white rounded-xl hover:bg-indigo-600 transition-all shadow-lg active:scale-95">
+                        <button
+                            onClick={() => router.push('/discovery')}
+                            className="p-2.5 bg-slate-900 text-white rounded-xl hover:bg-indigo-600 transition-all shadow-lg active:scale-95"
+                        >
                             <Plus className="w-5 h-5" />
                         </button>
                     </div>
@@ -185,11 +202,11 @@ export default function DashboardPage() {
                                 <TrendingUp className="w-4 h-4 text-indigo-400" /> Match Index
                             </h3>
                             <div className="mt-auto">
-                                <p className="text-5xl font-black mb-1">87<span className="text-indigo-400">%</span></p>
-                                <p className="text-xs font-medium text-slate-400 leading-relaxed mb-6">Your profile strength is <span className="text-indigo-400 font-bold">Optimal</span> for Top 50 global universities matching your budget.</p>
+                                <p className="text-5xl font-black mb-1">{averageMatchScore}<span className="text-indigo-400">%</span></p>
+                                <p className="text-xs font-medium text-slate-400 leading-relaxed mb-6">Your profile strength is <span className="text-indigo-400 font-bold">{getFitCategory(averageMatchScore)}</span> for Top 50 global universities matching your budget.</p>
                                 <div className="flex gap-2">
                                     <div className="h-1 flex-1 bg-indigo-500/30 rounded-full overflow-hidden">
-                                        <div className="h-full w-[87%] bg-indigo-400 shadow-[0_0_10px_rgba(129,140,248,0.5)]" />
+                                        <div className="h-full bg-indigo-400 shadow-[0_0_10px_rgba(129,140,248,0.5)]" style={{ width: `${averageMatchScore}%` }} />
                                     </div>
                                 </div>
                             </div>
