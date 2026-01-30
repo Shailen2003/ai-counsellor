@@ -1,0 +1,195 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// User & Authentication
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String
+  password      String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  profile       Profile?
+  shortlisted   ShortlistedUniversity[]
+  locked        LockedUniversity[]
+  tasks         Task[]
+  conversations Conversation[]
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// User Profile (Onboarding Data)
+model Profile {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Academic Background
+  educationLevel    String
+  degree            String
+  major             String
+  graduationYear    Int
+  gpa               Float?
+  
+  // Study Goals
+  intendedDegree    String
+  fieldOfStudy      String
+  targetIntakeYear  Int
+  preferredCountries String[] // JSON array
+  
+  // Budget
+  budgetMin         Int
+  budgetMax         Int
+  fundingPlan       String // self/scholarship/loan
+  
+  // Exam Readiness
+  ieltsStatus       String // not_started/in_progress/completed
+  ieltsScore        Float?
+  greStatus         String
+  greScore          Int?
+  sopStatus         String
+  
+  // Profile Strength (AI-calculated)
+  academicStrength  String @default("average") // strong/average/weak
+  examStrength      String @default("weak")
+  sopStrength       String @default("weak")
+  
+  // Stage Tracking
+  currentStage      String @default("building_profile")
+  
+  isComplete        Boolean @default(false)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+// University Data
+model University {
+  id                String   @id @default(cuid())
+  name              String
+  country           String
+  city              String
+  ranking           Int?
+  
+  // Program Details
+  programs          Json // Array of programs with details
+  
+  // Requirements
+  minGPA            Float
+  minIELTS          Float?
+  minGRE            Int?
+  
+  // Costs
+  tuitionMin        Int
+  tuitionMax        Int
+  livingCost        Int
+  
+  // Acceptance
+  acceptanceRate    Float
+  
+  // Metadata
+  website           String?
+  logo              String?
+  description       String? @db.Text
+  
+  shortlisted       ShortlistedUniversity[]
+  locked            LockedUniversity[]
+}
+
+// Shortlisted Universities
+model ShortlistedUniversity {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  universityId  String
+  university    University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  
+  category      String // dream/target/safe
+  fitReason     String @db.Text
+  risks         String @db.Text
+  acceptanceChance String // low/medium/high
+  
+  createdAt     DateTime @default(now())
+  
+  @@unique([userId, universityId])
+}
+
+// Locked Universities (Commitment)
+model LockedUniversity {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  universityId  String
+  university    University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  
+  program       String
+  lockedAt      DateTime @default(now())
+  
+  @@unique([userId, universityId])
+}
+
+// AI-Generated Tasks
+model Task {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  title       String
+  description String   @db.Text
+  category    String // exam/document/application/research
+  priority    String // high/medium/low
+  dueDate     DateTime?
+  
+  isCompleted Boolean  @default(false)
+  completedAt DateTime?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// AI Counsellor Conversations
+model Conversation {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  messages  Json // Array of {role, content, timestamp, actions}
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

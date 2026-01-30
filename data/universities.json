@@ -1,0 +1,502 @@
+[
+  {
+    "id": "1",
+    "name": "Massachusetts Institute of Technology",
+    "country": "USA",
+    "city": "Cambridge",
+    "ranking": 1,
+    "programs": [
+      {
+        "name": "Master of Science in Computer Science",
+        "duration": "2 years",
+        "intakes": ["Fall"]
+      },
+      {
+        "name": "Master of Engineering",
+        "duration": "1-2 years",
+        "intakes": ["Fall", "Spring"]
+      }
+    ],
+    "minGPA": 3.7,
+    "minIELTS": 7.0,
+    "minGRE": 325,
+    "tuitionMin": 55000,
+    "tuitionMax": 60000,
+    "livingCost": 20000,
+    "acceptanceRate": 7.3,
+    "website": "https://www.mit.edu",
+    "description": "World-renowned for STEM programs, cutting-edge research, and innovation."
+  },
+  {
+    "id": "2",
+    "name": "Stanford University",
+    "country": "USA",
+    "city": "Stanford",
+    "ranking": 2,
+    "programs": [
+      {
+        "name": "MS in Computer Science",
+        "duration": "2 years",
+        "intakes": ["Fall"]
+      },
+      {
+        "name": "MS in Data Science",
+        "duration": "1.5 years",
+        "intakes": ["Fall", "Spring"]
+      }
+    ],
+    "minGPA": 3.6,
+    "minIELTS": 7.0,
+    "minGRE": 323,
+    "tuitionMin": 54000,
+    "tuitionMax": 58000,
+    "livingCost": 25000,
+    "acceptanceRate": 4.8,
+    "website": "https://www.stanford.edu",
+    "description": "Top-tier university known for entrepreneurship and technology innovation."
+  },
+  {
+    "id": "3",
+    "name": "University of Oxford",
+    "country": "UK",
+    "city": "Oxford",
+    "ranking": 3,
+    "programs": [
+      {
+        "name": "MSc in Computer Science",
+        "duration": "1 year",
+        "intakes": ["September"]
+      },
+      {
+        "name": "MSc in Software Engineering",
+        "duration": "1 year",
+        "intakes": ["September"]
+      }
+    ],
+    "minGPA": 3.7,
+    "minIELTS": 7.5,
+    "minGRE": null,
+    "tuitionMin": 30000,
+    "tuitionMax": 35000,
+    "livingCost": 15000,
+    "acceptanceRate": 17.5,
+    "website": "https://www.ox.ac.uk",
+    "description": "Historic university with world-class research and academic excellence."
+  },
+  {
+    "id": "4",
+    "name": "University of Toronto",
+    "country": "Canada",
+    "city": "Toronto",
+    "ranking": 18,
+    "programs": [
+      {
+        "name": "Master of Science in Computer Science",
+        "duration": "2 years",
+        "intakes": ["September", "January"]
+      },
+      {
+        "name": "Master of Engineering",
+        "duration": "1 year",
+        "intakes": ["September"]
+      }
+    ],
+    "minGPA": 3.3,
+    "minIELTS": 7.0,
+    "minGRE": 315,
+    "tuitionMin": 25000,
+    "tuitionMax": 30000,
+    "livingCost": 12000,
+    "acceptanceRate": 43.0,
+    "website": "https://www.utoronto.ca",
+    "description": "Canada's top university with strong research programs and diverse community."
+  },
+  {
+    "id": "5",
+    "name": "University of Melbourne",
+    "country": "Australia",
+    "city": "Melbourne",
+    "ranking": 14,
+    "programs": [
+      {
+        "name": "Master of Information Technology",
+        "duration": "2 years",
+        "intakes": ["February", "July"]
+      },
+      {
+        "name": "Master of Data Science",
+        "duration": "2 years",
+        "intakes": ["February", "July"]
+      }
+    ],
+    "minGPA": 3.0,
+    "minIELTS": 6.5,
+    "minGRE": null,
+    "tuitionMin": 35000,
+    "tuitionMax": 40000,
+    "livingCost": 18000,
+    "acceptanceRate": 70.0,
+    "website": "https://www.unimelb.edu.au",
+    "description": "Leading Australian university with excellent post-study work opportunities."
+  },
+  {
+    "id": "6",
+    "name": "Technical University of Munich",
+    "country": "Germany",
+    "city": "Munich",
+    "ranking": 50,
+    "programs": [
+      {
+        "name": "Master in Computer Science",
+        "duration": "2 years",
+        "intakes": ["October", "April"]
+      },
+      {
+        "name": "Master in Data Engineering",
+        "duration": "2 years",
+        "intakes": ["October"]
+      }
+    ],
+    "minGPA": 3.0,
+    "minIELTS": 6.5,
+    "minGRE": null,
+    "tuitionMin": 0,
+    "tuitionMax": 3000,
+    "livingCost": 10000,
+    "acceptanceRate": 25.0,
+    "website": "https://www.tum.de",
+    "description": "Top German university with low tuition and strong engineering programs."
+  },
+  {
+    "id": "7",
+    "name": "University of British Columbia",
+    "country": "Canada",
+    "city": "Vancouver",
+    "ranking": 34,
+    "programs": [
+      {
+        "name": "Master of Science in Computer Science",
+        "duration": "2 years",
+        "intakes": ["September", "January"]
+      }
+    ],
+    "minGPA": 3.3,
+    "minIELTS": 6.5,
+    "minGRE": 310,
+    "tuitionMin": 22000,
+    "tuitionMax": 28000,
+    "livingCost": 14000,
+    "acceptanceRate": 52.0,
+    "website": "https://www.ubc.ca",
+    "description": "Beautiful campus with strong research focus and multicultural environment."
+  },
+  {
+    "id": "8",
+    "name": "Carnegie Mellon University",
+    "country": "USA",
+    "city": "Pittsburgh",
+    "ranking": 28,
+    "programs": [
+      {
+        "name": "Master of Science in Computer Science",
+        "duration": "2 years",
+        "intakes": ["Fall"]
+      },
+      {
+        "name": "Master of Software Engineering",
+        "duration": "1.5 years",
+        "intakes": ["Fall", "Spring"]
+      }
+    ],
+    "minGPA": 3.5,
+    "minIELTS": 7.0,
+    "minGRE": 320,
+    "tuitionMin": 50000,
+    "tuitionMax": 55000,
+    "livingCost": 18000,
+    "acceptanceRate": 17.0,
+    "website": "https://www.cmu.edu",
+    "description": "Premier institution for computer science and robotics."
+  },
+  {
+    "id": "9",
+    "name": "University of Waterloo",
+    "country": "Canada",
+    "city": "Waterloo",
+    "ranking": 166,
+    "programs": [
+      {
+        "name": "Master of Mathematics in Computer Science",
+        "duration": "2 years",
+        "intakes": ["September", "January", "May"]
+      }
+    ],
+    "minGPA": 3.0,
+    "minIELTS": 7.0,
+    "minGRE": 310,
+    "tuitionMin": 18000,
+    "tuitionMax": 24000,
+    "livingCost": 11000,
+    "acceptanceRate": 53.0,
+    "website": "https://uwaterloo.ca",
+    "description": "Known for co-op programs and strong tech industry connections."
+  },
+  {
+    "id": "10",
+    "name": "University of Edinburgh",
+    "country": "UK",
+    "city": "Edinburgh",
+    "ranking": 22,
+    "programs": [
+      {
+        "name": "MSc in Artificial Intelligence",
+        "duration": "1 year",
+        "intakes": ["September"]
+      },
+      {
+        "name": "MSc in Computer Science",
+        "duration": "1 year",
+        "intakes": ["September"]
+      }
+    ],
+    "minGPA": 3.3,
+    "minIELTS": 7.0,
+    "minGRE": null,
+    "tuitionMin": 28000,
+    "tuitionMax": 32000,
+    "livingCost": 12000,
+    "acceptanceRate": 40.0,
+    "website": "https://www.ed.ac.uk",
+    "description": "Historic university with strong AI and informatics programs."
+  },
+  {
+    "id": "11",
+    "name": "University of California, Berkeley",
+    "country": "USA",
+    "city": "Berkeley",
+    "ranking": 10,
+    "programs": [
+      {
+        "name": "Master of Engineering",
+        "duration": "1 year",
+        "intakes": ["Fall"]
+      }
+    ],
+    "minGPA": 3.5,
+    "minIELTS": 7.0,
+    "minGRE": 320,
+    "tuitionMin": 48000,
+    "tuitionMax": 52000,
+    "livingCost": 22000,
+    "acceptanceRate": 16.0,
+    "website": "https://www.berkeley.edu",
+    "description": "Public ivy with exceptional engineering and tech programs."
+  },
+  {
+    "id": "12",
+    "name": "National University of Singapore",
+    "country": "Singapore",
+    "city": "Singapore",
+    "ranking": 11,
+    "programs": [
+      {
+        "name": "Master of Computing",
+        "duration": "1.5 years",
+        "intakes": ["August", "January"]
+      }
+    ],
+    "minGPA": 3.2,
+    "minIELTS": 6.5,
+    "minGRE": 315,
+    "tuitionMin": 25000,
+    "tuitionMax": 30000,
+    "livingCost": 12000,
+    "acceptanceRate": 24.0,
+    "website": "https://www.nus.edu.sg",
+    "description": "Asia's leading university with strong industry partnerships."
+  },
+  {
+    "id": "13",
+    "name": "ETH Zurich",
+    "country": "Switzerland",
+    "city": "Zurich",
+    "ranking": 7,
+    "programs": [
+      {
+        "name": "Master in Computer Science",
+        "duration": "2 years",
+        "intakes": ["September"]
+      }
+    ],
+    "minGPA": 3.5,
+    "minIELTS": 7.0,
+    "minGRE": null,
+    "tuitionMin": 1500,
+    "tuitionMax": 2000,
+    "livingCost": 20000,
+    "acceptanceRate": 27.0,
+    "website": "https://ethz.ch",
+    "description": "Europe's top technical university with low tuition fees."
+  },
+  {
+    "id": "14",
+    "name": "Imperial College London",
+    "country": "UK",
+    "city": "London",
+    "ranking": 6,
+    "programs": [
+      {
+        "name": "MSc in Computing",
+        "duration": "1 year",
+        "intakes": ["September"]
+      }
+    ],
+    "minGPA": 3.5,
+    "minIELTS": 7.0,
+    "minGRE": null,
+    "tuitionMin": 32000,
+    "tuitionMax": 36000,
+    "livingCost": 18000,
+    "acceptanceRate": 14.0,
+    "website": "https://www.imperial.ac.uk",
+    "description": "Specialist STEM institution in the heart of London."
+  },
+  {
+    "id": "15",
+    "name": "University of Texas at Austin",
+    "country": "USA",
+    "city": "Austin",
+    "ranking": 67,
+    "programs": [
+      {
+        "name": "Master of Science in Computer Science",
+        "duration": "2 years",
+        "intakes": ["Fall", "Spring"]
+      }
+    ],
+    "minGPA": 3.2,
+    "minIELTS": 6.5,
+    "minGRE": 315,
+    "tuitionMin": 38000,
+    "tuitionMax": 42000,
+    "livingCost": 15000,
+    "acceptanceRate": 32.0,
+    "website": "https://www.utexas.edu",
+    "description": "Strong CS program in a vibrant tech hub."
+  },
+  {
+    "id": "16",
+    "name": "University of Sydney",
+    "country": "Australia",
+    "city": "Sydney",
+    "ranking": 19,
+    "programs": [
+      {
+        "name": "Master of Information Technology",
+        "duration": "1.5 years",
+        "intakes": ["February", "August"]
+      }
+    ],
+    "minGPA": 2.8,
+    "minIELTS": 6.5,
+    "minGRE": null,
+    "tuitionMin": 38000,
+    "tuitionMax": 42000,
+    "livingCost": 20000,
+    "acceptanceRate": 72.0,
+    "website": "https://www.sydney.edu.au",
+    "description": "Prestigious Australian university with excellent student support."
+  },
+  {
+    "id": "17",
+    "name": "University of Manchester",
+    "country": "UK",
+    "city": "Manchester",
+    "ranking": 27,
+    "programs": [
+      {
+        "name": "MSc in Advanced Computer Science",
+        "duration": "1 year",
+        "intakes": ["September"]
+      }
+    ],
+    "minGPA": 3.0,
+    "minIELTS": 6.5,
+    "minGRE": null,
+    "tuitionMin": 26000,
+    "tuitionMax": 30000,
+    "livingCost": 11000,
+    "acceptanceRate": 56.0,
+    "website": "https://www.manchester.ac.uk",
+    "description": "Research-intensive university with affordable living costs."
+  },
+  {
+    "id": "18",
+    "name": "McGill University",
+    "country": "Canada",
+    "city": "Montreal",
+    "ranking": 31,
+    "programs": [
+      {
+        "name": "Master of Science in Computer Science",
+        "duration": "2 years",
+        "intakes": ["September", "January"]
+      }
+    ],
+    "minGPA": 3.2,
+    "minIELTS": 6.5,
+    "minGRE": 310,
+    "tuitionMin": 20000,
+    "tuitionMax": 25000,
+    "livingCost": 11000,
+    "acceptanceRate": 46.0,
+    "website": "https://www.mcgill.ca",
+    "description": "Canada's most international university with bilingual environment."
+  },
+  {
+    "id": "19",
+    "name": "University of Washington",
+    "country": "USA",
+    "city": "Seattle",
+    "ranking": 80,
+    "programs": [
+      {
+        "name": "Master of Science in Computer Science",
+        "duration": "2 years",
+        "intakes": ["Fall"]
+      }
+    ],
+    "minGPA": 3.3,
+    "minIELTS": 7.0,
+    "minGRE": 318,
+    "tuitionMin": 42000,
+    "tuitionMax": 46000,
+    "livingCost": 16000,
+    "acceptanceRate": 26.0,
+    "website": "https://www.washington.edu",
+    "description": "Top public university in tech-rich Seattle."
+  },
+  {
+    "id": "20",
+    "name": "RWTH Aachen University",
+    "country": "Germany",
+    "city": "Aachen",
+    "ranking": 106,
+    "programs": [
+      {
+        "name": "Master in Computer Science",
+        "duration": "2 years",
+        "intakes": ["October"]
+      }
+    ],
+    "minGPA": 2.8,
+    "minIELTS": 6.5,
+    "minGRE": null,
+    "tuitionMin": 0,
+    "tuitionMax": 500,
+    "livingCost": 9000,
+    "acceptanceRate": 45.0,
+    "website": "https://www.rwth-aachen.de",
+    "description": "Leading German technical university with virtually no tuition."
+  }
+]
