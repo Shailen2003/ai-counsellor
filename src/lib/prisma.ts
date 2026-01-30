@@ -3,14 +3,28 @@ import { PrismaPg } from '@prisma/adapter-pg'
 import pg from 'pg'
 
 const connectionString = `${process.env.DATABASE_URL}`
-const pool = new pg.Pool({ connectionString })
+const pool = new pg.Pool({
+    connectionString,
+    max: 20,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 2000,
+})
 const adapter = new PrismaPg(pool)
 
-const globalForPrisma = globalThis as unknown as {
-    prisma: PrismaClient | undefined
+const prismaClientSingleton = () => {
+    return new PrismaClient({
+        adapter,
+        log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+    })
 }
 
-export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter })
+type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>
+
+const globalForPrisma = globalThis as unknown as {
+    prisma: PrismaClientSingleton | undefined
+}
+
+export const prisma = globalForPrisma.prisma ?? prismaClientSingleton()
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
 
