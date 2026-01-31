@@ -1,6 +1,10 @@
 import { PrismaClient } from '@prisma/client'
 import { PrismaPg } from '@prisma/adapter-pg'
 import pg from 'pg'
+import dns from 'dns'
+
+// Force IPv4 for Supabase connectivity issues
+dns.setDefaultResultOrder('ipv4first')
 
 const connectionString = `${process.env.DATABASE_URL}`
 const pool = new pg.Pool({
@@ -8,7 +12,7 @@ const pool = new pg.Pool({
     max: 20,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : undefined,
+    ssl: { rejectUnauthorized: false }, // Supabase requires SSL
 })
 const adapter = new PrismaPg(pool)
 
