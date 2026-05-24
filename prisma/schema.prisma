@@ -193,3 +193,17 @@ model Conversation {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+// Global & Domestic Scholarships
+model Scholarship {
+  id            String   @id @default(cuid())
+  name          String
+  country       String   // e.g. USA, UK, Canada, Australia, Germany, Global
+  amount        Int      // Scholarship value in USD
+  type          String   // merit, need-based, global, country-specific
+  eligibility   String   @db.Text
+  description   String   @db.Text
+  website       String?
+  createdAt     DateTime @default(now())
+}
+

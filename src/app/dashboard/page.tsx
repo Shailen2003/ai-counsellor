@@ -26,7 +26,9 @@ import {
     Sparkles,
     TrendingUp,
     Calendar,
-    ArrowUpRight
+    ArrowUpRight,
+    Award,
+    FileText
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -99,6 +101,8 @@ export default function DashboardPage() {
                         { href: "/dashboard", icon: LayoutDashboard, label: "Console", active: true },
                         { href: "/counsellor", icon: MessageSquare, label: "AI Advisor" },
                         { href: "/discovery", icon: Search, label: "Engine" },
+                        { href: "/sop-analyzer", icon: FileText, label: "SOP Lab" },
+                        { href: "/scholarships", icon: Award, label: "Scholarships" },
                         { href: "/profile", icon: User, label: "Identity" },
                     ].map((item) => (
                         <Link

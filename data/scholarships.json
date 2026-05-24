@@ -1,0 +1,102 @@
+[
+  {
+    "id": "schol_1",
+    "name": "Fulbright Foreign Student Program",
+    "country": "USA",
+    "amount": 50000,
+    "type": "global",
+    "eligibility": "Requires Bachelor's degree with excellent academic records (GPA 3.5+ recommended), IELTS 7.0+, and strong leadership potential. For non-US citizens.",
+    "description": "The Fulbright program covers full tuition, textbooks, round-trip airfare, a living stipend, and health insurance for postgraduate studies in any fields.",
+    "website": "https://foreign.fulbrightonline.org"
+  },
+  {
+    "id": "schol_2",
+    "name": "Chevening Scholarships",
+    "country": "UK",
+    "amount": 45000,
+    "type": "global",
+    "eligibility": "Requires a minimum of two years' work experience, a completed undergraduate degree, and dynamic leadership skills. For students targeting Master's in the UK.",
+    "description": "Funded by the UK Foreign Office, this scholarship covers full university tuition fees, a monthly living allowance, return flights, and grant support.",
+    "website": "https://www.chevening.org"
+  },
+  {
+    "id": "schol_3",
+    "name": "DAAD Development-Related Postgraduate Courses",
+    "country": "Germany",
+    "amount": 12000,
+    "type": "merit",
+    "eligibility": "Requires a Bachelor's degree (completed within past 6 years), at least 2 years of professional work experience, GPA 3.0+, and IELTS 6.5+.",
+    "description": "DAAD supports international students targeting Master's or PhD programs at state-recognized German universities, covering living expenses and travel.",
+    "website": "https://www.daad.de"
+  },
+  {
+    "id": "schol_4",
+    "name": "Commonwealth Master's Scholarships",
+    "country": "UK",
+    "amount": 40000,
+    "type": "need-based",
+    "eligibility": "Requires citizenship or refugee status in a Commonwealth country, high academic standing (GPA 3.5+), and inability to afford studying in the UK.",
+    "description": "Commonwealth Scholarships are intended for talented individuals with the potential to make a positive impact on the global stage.",
+    "website": "https://cscuk.fcdo.gov.uk"
+  },
+  {
+    "id": "schol_5",
+    "name": "Ontario Graduate Scholarship (OGS)",
+    "country": "Canada",
+    "amount": 15000,
+    "type": "merit",
+    "eligibility": "Requires full-time registration in a graduate studies program in Ontario, high GPA (typically A- or 3.7+ over last 2 years), and study permit.",
+    "description": "Jointly funded by the Province of Ontario and participating universities to support merit-based graduate studies.",
+    "website": "https://osap.gov.on.ca"
+  },
+  {
+    "id": "schol_6",
+    "name": "Australia Awards Scholarships",
+    "country": "Australia",
+    "amount": 35000,
+    "type": "global",
+    "eligibility": "For citizens of eligible countries in Asia, the Pacific, and Africa. Requires IELTS 6.5+ and commit to returning home to contribute to development.",
+    "description": "Administered by the Department of Foreign Affairs and Trade (DFAT) to promote development through education, covering full tuition and living expenses.",
+    "website": "https://www.dfat.gov.au/people-to-people/australia-awards"
+  },
+  {
+    "id": "schol_7",
+    "name": "Erasmus Mundus Joint Masters Scholarship",
+    "country": "Global",
+    "amount": 49000,
+    "type": "merit",
+    "eligibility": "Requires a Bachelor's degree, excellent academic standing (GPA 3.6+), and willingness to study in at least two different European countries.",
+    "description": "A prestigious, integrated study program covering full tuition fees, travel costs, installation allowances, and a generous monthly stipend.",
+    "website": "https://erasmus-plus.ec.europa.eu"
+  },
+  {
+    "id": "schol_8",
+    "name": "Gates Cambridge Scholarship",
+    "country": "UK",
+    "amount": 55000,
+    "type": "merit",
+    "eligibility": "For outstanding applicants outside the UK applying for full-time postgraduate study at the University of Cambridge. Requires outstanding GPA (3.9+).",
+    "description": "Covers the full cost of studying at Cambridge, including university fees, maintenance allowances, return airfare, and academic funding.",
+    "website": "https://www.gatescambridge.org"
+  },
+  {
+    "id": "schol_9",
+    "name": "Knight-Hennessy Scholars",
+    "country": "USA",
+    "amount": 60000,
+    "type": "merit",
+    "eligibility": "Open to all nationalities targeting graduate degrees at Stanford University. Requires superior GPA, critical thinking, and civic leadership.",
+    "description": "Full funding covering tuition, living expenses, books, academic materials, local transport, and global travel allowances at Stanford.",
+    "website": "https://knight-hennessy.stanford.edu"
+  },
+  {
+    "id": "schol_10",
+    "name": "Great Scholarships",
+    "country": "UK",
+    "amount": 13000,
+    "type": "country-specific",
+    "eligibility": "For students from eligible countries targeting Master's programs at participating UK universities. Requires high academic record.",
+    "description": "Covers tuition fees for one-year postgraduate courses in the UK, funded by the UK Government's GREAT Britain Campaign.",
+    "website": "https://study-uk.britishcouncil.org/scholarships-funding/great-scholarships"
+  }
+]
