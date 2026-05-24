@@ -47,6 +47,32 @@ async function main() {
     }
 
     console.log(`Seeded ${universitiesData.length} universities`);
+
+    // Read scholarships data
+    const scholarshipsPath = path.join(process.cwd(), 'data', 'scholarships.json');
+    console.log('Reading scholarships.json from:', scholarshipsPath);
+    const scholarshipsData = JSON.parse(fs.readFileSync(scholarshipsPath, 'utf-8'));
+    console.log(`Successfully read ${scholarshipsData.length} scholarships from JSON`);
+
+    // Seed scholarships
+    console.log('Seeding scholarships...');
+    for (const schol of scholarshipsData) {
+        await prisma.scholarship.upsert({
+            where: { id: schol.id },
+            update: {},
+            create: {
+                id: schol.id,
+                name: schol.name,
+                country: schol.country,
+                amount: schol.amount,
+                type: schol.type,
+                eligibility: schol.eligibility,
+                description: schol.description,
+                website: schol.website,
+            },
+        });
+    }
+    console.log(`Seeded ${scholarshipsData.length} scholarships`);
     console.log('Database seed completed!');
 }
 

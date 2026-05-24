@@ -12,7 +12,9 @@ import {
     ChevronRight,
     ChevronLeft,
     CheckCircle2,
-    Loader2
+    Loader2,
+    Mic,
+    MicOff
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,6 +31,58 @@ export default function OnboardingPage() {
     const [currentStep, setCurrentStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [listeningField, setListeningField] = useState<string | null>(null);
+
+    const startDictation = (field: keyof typeof formData) => {
+        if (typeof window === "undefined") return;
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            alert("Speech recognition is not supported in this browser. Please use Chrome, Safari or Edge.");
+            return;
+        }
+
+        if (listeningField === field) {
+            setListeningField(null);
+            return;
+        }
+
+        setListeningField(field);
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+
+        recognition.onstart = () => {
+            console.log("Listening for " + field + "...");
+        };
+
+        recognition.onerror = (e: any) => {
+            console.error("Speech recognition error:", e);
+            setListeningField(null);
+        };
+
+        recognition.onend = () => {
+            setListeningField(null);
+        };
+
+        recognition.onresult = (event: any) => {
+            const result = event.results[0][0].transcript;
+            if (result) {
+                // If GPA, strip extra text, leave numbers
+                let formattedResult = result;
+                if (field === "gpa") {
+                    const match = result.match(/[+-]?([0-9]*[.])?[0-9]+/);
+                    if (match) formattedResult = match[0];
+                }
+                setFormData(prev => ({
+                    ...prev,
+                    [field]: formattedResult
+                }));
+            }
+        };
+
+        recognition.start();
+    };
 
     const [formData, setFormData] = useState({
         // Academics
@@ -140,33 +194,78 @@ export default function OnboardingPage() {
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700">Degree/Certificate Name</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. B.Tech in Computer Science"
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 transition-all outline-none text-slate-900 bg-white placeholder:text-slate-400"
-                                    value={formData.degree}
-                                    onChange={(e) => setFormData({ ...formData, degree: e.target.value })}
-                                />
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        placeholder="e.g. B.Tech in Computer Science"
+                                        className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 transition-all outline-none text-slate-900 bg-white placeholder:text-slate-400"
+                                        value={formData.degree}
+                                        onChange={(e) => setFormData({ ...formData, degree: e.target.value })}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => startDictation("degree")}
+                                        className={cn(
+                                            "px-4 rounded-xl border flex items-center justify-center transition-all cursor-pointer",
+                                            listeningField === "degree"
+                                                ? "bg-red-500 border-red-500 text-white animate-pulse"
+                                                : "bg-slate-50 border-gray-200 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                                        )}
+                                        title="Speak Degree"
+                                    >
+                                        {listeningField === "degree" ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                                    </button>
+                                </div>
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700">Major/Subject</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. Computer Science"
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 transition-all outline-none text-slate-900 bg-white placeholder:text-slate-400"
-                                    value={formData.major}
-                                    onChange={(e) => setFormData({ ...formData, major: e.target.value })}
-                                />
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        placeholder="e.g. Computer Science"
+                                        className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 transition-all outline-none text-slate-900 bg-white placeholder:text-slate-400"
+                                        value={formData.major}
+                                        onChange={(e) => setFormData({ ...formData, major: e.target.value })}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => startDictation("major")}
+                                        className={cn(
+                                            "px-4 rounded-xl border flex items-center justify-center transition-all cursor-pointer",
+                                            listeningField === "major"
+                                                ? "bg-red-500 border-red-500 text-white animate-pulse"
+                                                : "bg-slate-50 border-gray-200 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                                        )}
+                                        title="Speak Major"
+                                    >
+                                        {listeningField === "major" ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                                    </button>
+                                </div>
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700">GPA / Percentage (Optional)</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. 3.8 or 85%"
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 transition-all outline-none text-slate-900 bg-white placeholder:text-slate-400"
-                                    value={formData.gpa}
-                                    onChange={(e) => setFormData({ ...formData, gpa: e.target.value })}
-                                />
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        placeholder="e.g. 3.8 or 85%"
+                                        className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 transition-all outline-none text-slate-900 bg-white placeholder:text-slate-400"
+                                        value={formData.gpa}
+                                        onChange={(e) => setFormData({ ...formData, gpa: e.target.value })}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => startDictation("gpa")}
+                                        className={cn(
+                                            "px-4 rounded-xl border flex items-center justify-center transition-all cursor-pointer",
+                                            listeningField === "gpa"
+                                                ? "bg-red-500 border-red-500 text-white animate-pulse"
+                                                : "bg-slate-50 border-gray-200 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                                        )}
+                                        title="Speak GPA"
+                                    >
+                                        {listeningField === "gpa" ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
@@ -195,13 +294,28 @@ export default function OnboardingPage() {
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700">Field of Study</label>
-                                <input
-                                    type="text"
-                                    placeholder="e.g. Data Science"
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 transition-all outline-none text-slate-900 bg-white placeholder:text-slate-400"
-                                    value={formData.fieldOfStudy}
-                                    onChange={(e) => setFormData({ ...formData, fieldOfStudy: e.target.value })}
-                                />
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        placeholder="e.g. Data Science"
+                                        className="flex-1 px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 transition-all outline-none text-slate-900 bg-white placeholder:text-slate-400"
+                                        value={formData.fieldOfStudy}
+                                        onChange={(e) => setFormData({ ...formData, fieldOfStudy: e.target.value })}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => startDictation("fieldOfStudy")}
+                                        className={cn(
+                                            "px-4 rounded-xl border flex items-center justify-center transition-all cursor-pointer",
+                                            listeningField === "fieldOfStudy"
+                                                ? "bg-red-500 border-red-500 text-white animate-pulse"
+                                                : "bg-slate-50 border-gray-200 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                                        )}
+                                        title="Speak Field of Study"
+                                    >
+                                        {listeningField === "fieldOfStudy" ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                                    </button>
+                                </div>
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-gray-700">Target Intake Year</label>
