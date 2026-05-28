@@ -2,7 +2,6 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-
 async function main() {
     const universities = await prisma.university.findMany();
     console.log('Total Universities:', universities.length);
